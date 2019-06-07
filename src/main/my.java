@@ -120,6 +120,7 @@ public class my {
 			KeyType keyType = keyStroke.getKeyType();
 
 			HUB game = new HUB(terminal, screen, name);
+			game.dialogue();
 			boolean done = false;
 
 			while (!done) {

@@ -42,7 +42,16 @@ public class HUB extends my{
 	//the basis of the user instruction 
 	void dialogue() {
 		initiate a= new initiate();
-		System.out.println(a.StartupRoomArray());
+		for(int i = 0; i < a.StartupRoomArray().length; i++) 
+		{
+			System.out.println();
+			for(int j = 0; j < a.StartupRoomArray()[i].length; j++)
+			{
+				System.out.print(a.StartupRoomArray()[i][j]);
+			}
+			
+		}
+		
 
 	}
 }
