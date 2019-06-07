@@ -53,7 +53,7 @@ public class initiate {
 			concurrentRooms = (int) (Math.random() * 2 + 1);
 			quota = 4 - concurrentRooms;
 			while (quota != 0) {
-				if (count <= 100) {
+				if (count <= 50) {
 					break now;
 				}
 				direction = (int) (Math.random() * 3);
