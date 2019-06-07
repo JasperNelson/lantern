@@ -28,35 +28,29 @@ public class initiate {
 	public int[][] StartupRoomArray() {
 
 		int ra = 0;
-		int vertchange = 1;
 		int vert = 50;
 		int horiz = 50;
-
-		int horizchange = 1;
 		int quota = 0;
-//		boolean back = true;
-//		boolean front = true;
-//		boolean right = true;
-//		boolean left = true;
 		int direction;
-
 		int concurrentRooms;
-	
-			
-		
-		
+
+		//now is an emergency break statement
 		now: for (ra = 0; ra <= 50; ra += concurrentRooms) {
+			
 			concurrentRooms = (int) (Math.random() * 2 + 1);
 			quota =  concurrentRooms;
 			while (quota != 0) {
 				if (count <= 50) {
 					break now;
 				}
-				direction = (int) (Math.random() * 3);
+				//determines the direction that the rooms will grow (like the branches of a tree)
+				direction = (int) (Math.random() * 3+1);
+				
 				if (start == true) {
 					temp[50][50] = 1;
 					start = false;
 				}
+				//each int that direction returns will cause a room to be created as long as there is not already a room there
 				if (direction == 1 && temp[vert + 1][horiz] == 0) {
 					vert -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
@@ -67,8 +61,8 @@ public class initiate {
 					vert -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
 					quota += 1;
-
 					continueRoomArray(horiz, vert, concurrentRooms);
+				
 				} else if (direction == 3 && temp[vert][horiz - 1] == 0) {
 					vert -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
