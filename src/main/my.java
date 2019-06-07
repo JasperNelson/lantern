@@ -119,10 +119,11 @@ public class my {
             KeyStroke keyStroke = terminal.readInput();
             KeyType keyType = keyStroke.getKeyType();
 
+            HUB game=new HUB(terminal, screen);
             boolean done = false;
             
-            while (!done) {  
-            	HUB game=new HUB(terminal, screen);
+            while (!done) {       	
+            	game.menue();
             	System.out.println();
             	keyStroke = terminal.readInput();  
               
