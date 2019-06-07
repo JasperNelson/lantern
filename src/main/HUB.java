@@ -31,6 +31,7 @@ public class HUB extends my{
 	            				textGraphics.putString(0, 14,"and back to go back");
 	            				textGraphics.putString(0, 15,"type search to search");
 	            				textGraphics.putString(0, 16,"type end to endturn", SGR.BOLD);
+	           screen.refresh();
 		  }
 		  //the basis of the user instruction 
 		  void dialogue() {
