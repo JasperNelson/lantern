@@ -47,7 +47,7 @@ public class initiate {
 		
 		now: for (ra = 0; ra <= 50; ra += concurrentRooms) {
 			concurrentRooms = (int) (Math.random() * 2 + 1);
-			quota = 4 - concurrentRooms;
+			quota =  concurrentRooms;
 			while (quota != 0) {
 				if (count <= 50) {
 					break now;
