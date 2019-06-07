@@ -18,134 +18,133 @@ import com.googlecode.lanterna.input.KeyType;
 
 public class my {
 
-    //   public static enum KeyType {
-    //       Escape
-    //   }
+	//   public static enum KeyType {
+	//       Escape
+	//   }
 
-    /**
-     * Waits for the user to press any key.
-     * @throws IOException
-     */
-    public static void waitForKeyPress(Terminal terminal) throws IOException {
-        terminal.readInput();
-    }
+	/**
+	 * Waits for the user to press any key.
+	 * @throws IOException
+	 */
+	public static void waitForKeyPress(Terminal terminal) throws IOException {
+		terminal.readInput();
+	}
 
-    /**
-     * Asks the user to type some input.
-     */
-    public static String getline(Terminal terminal, Screen screen, String prompt) throws IOException {
-        String result = "";
-        boolean done = false;
-        TextGraphics textGraphics = terminal.newTextGraphics();
-        TerminalPosition cursorPosition = terminal.getCursorPosition();
-        TerminalSize terminalSize = terminal.getTerminalSize();
+	/**
+	 * Asks the user to type some input.
+	 */
+	public static String getline(Terminal terminal, Screen screen, String prompt) throws IOException {
+		String result = "";
+		boolean done = false;
+		TextGraphics textGraphics = terminal.newTextGraphics();
+		TerminalPosition cursorPosition = terminal.getCursorPosition();
+		TerminalSize terminalSize = terminal.getTerminalSize();
 
-        // Print the prompt and then move the cursor to be just beyond it.
-        textGraphics.putString(cursorPosition, prompt);
-        cursorPosition = cursorPosition.withColumn(cursorPosition.getColumn() + prompt.length());
-        screen.refresh();
+		// Print the prompt and then move the cursor to be just beyond it.
+		textGraphics.putString(cursorPosition, prompt);
+		cursorPosition = cursorPosition.withColumn(cursorPosition.getColumn() + prompt.length());
+		screen.refresh();
 
-        while (!done) {
-            // Print a cursor character at the current position.
-            textGraphics.putString(cursorPosition, "█");
-            screen.refresh();
+		while (!done) {
+			// Print a cursor character at the current position.
+			textGraphics.putString(cursorPosition, "█");
+			screen.refresh();
 
-            // This is a blocking call.  There's no chance to print an
-            // animated cursor while we're waiting for this.
-            KeyStroke key = terminal.readInput();
+			// This is a blocking call.  There's no chance to print an
+			// animated cursor while we're waiting for this.
+			KeyStroke key = terminal.readInput();
 
-            switch (key.getKeyType()) {
-                case Character:
-                    result += key.getCharacter();
-                    // Echo the character the user entered.
-                    textGraphics.putString(cursorPosition, key.getCharacter().toString());
-                    cursorPosition = cursorPosition.withColumn(cursorPosition.getColumn() + 1);
-                    break;
-                case Enter:
-                    // The user committed the changes.
-                    done = true;
-                    break;
-                case Escape:
-                    // The user canceled the input.
-                    return "";
-                case Backspace:
-                    if (result.length() > 0) {
-                        result = result.substring(0, result.length() - 1);
+			switch (key.getKeyType()) {
+			case Character:
+				result += key.getCharacter();
+				// Echo the character the user entered.
+				textGraphics.putString(cursorPosition, key.getCharacter().toString());
+				cursorPosition = cursorPosition.withColumn(cursorPosition.getColumn() + 1);
+				break;
+			case Enter:
+				// The user committed the changes.
+				done = true;
+				break;
+			case Escape:
+				// The user canceled the input.
+				return "";
+			case Backspace:
+				if (result.length() > 0) {
+					result = result.substring(0, result.length() - 1);
 
-                        // Clear the current cursor.
-                        textGraphics.putString(cursorPosition, " ");
+					// Clear the current cursor.
+					textGraphics.putString(cursorPosition, " ");
 
-                        // Back off to the previous position.
-                        // During the next loop ieration, the cursor will print over it.
-                        cursorPosition = cursorPosition.withColumn(cursorPosition.getColumn() - 1);
-                    }
-                    break;
-                default:
-                    // Ignore.
-            }
-        } // end (while not done)
+					// Back off to the previous position.
+					// During the next loop ieration, the cursor will print over it.
+					cursorPosition = cursorPosition.withColumn(cursorPosition.getColumn() - 1);
+				}
+				break;
+			default:
+				// Ignore.
+			}
+		} // end (while not done)
 
-        // Clear the cursor so the user isn't confused.
-        textGraphics.putString(cursorPosition, " ");
-        screen.refresh();
+		// Clear the cursor so the user isn't confused.
+		textGraphics.putString(cursorPosition, " ");
+		screen.refresh();
 
-        return result;
-    }
+		return result;
+	}
 
-    public static void main(String[] args) throws IOException , NullPointerException {
+	public static void main(String[] args) throws IOException , NullPointerException {
 
-        // Setup terminal and screen layers
-        Terminal terminal = new DefaultTerminalFactory().createTerminal();
-        Screen screen = new TerminalScreen(terminal);
+		// Setup terminal and screen layers
+		Terminal terminal = new DefaultTerminalFactory().createTerminal();
+		Screen screen = new TerminalScreen(terminal);
 
-        screen.startScreen();
-        screen.refresh();
+		screen.startScreen();
+		screen.refresh();
 
-        try {
-            // Print welcome message
-            final TextGraphics textGraphics = terminal.newTextGraphics();
-            textGraphics.putString(10, 0, "Hi welcome to " + " VRION");
-            screen.refresh();
+		try {
+			// Print welcome message
+			final TextGraphics textGraphics = terminal.newTextGraphics();
+			textGraphics.putString(10, 0, "Hi welcome to " + " VRION");
+			screen.refresh();
 
-            // Get the user's name
-            terminal.setCursorPosition(0, 5);
-            String name = getline(terminal, screen, "What is your name? ");
-            textGraphics.putString(0, 6, String.format("I hope you enjoy your stay, %s.", name));
-            screen.refresh();
+			// Get the user's name
+			terminal.setCursorPosition(0, 5);
+			String name = getline(terminal, screen, "What is your name? ");
+			textGraphics.putString(0, 6, String.format("I hope you enjoy your stay, %s.", name));
+			screen.refresh();
 
-            // Quit if the user uses the escape key
+			// Quit if the user uses the escape key
 
-            screen.refresh();
-            KeyStroke keyStroke = terminal.readInput();
-            KeyType keyType = keyStroke.getKeyType();
+			screen.refresh();
+			KeyStroke keyStroke = terminal.readInput();
+			KeyType keyType = keyStroke.getKeyType();
 
-            HUB game=new HUB(terminal, screen, name);
-            boolean done = false;
+			HUB game = new HUB(terminal, screen, name);
+			boolean done = false;
 
-            while (!done) {
-                HUB game=new HUB(terminal, screen);
-                System.out.println();
-                keyStroke = terminal.readInput();
+			while (!done) {
+				game.menue();
+				keyStroke = terminal.readInput();
 
-                                if (keyStroke.getKeyType() == keyType.Escape) {
+				if (keyStroke.getKeyType() == keyType.Escape) {
+					done = true; 
+				} 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// Shut down the terminal safely.
+			try {
+				if (screen != null) {
+					screen.stopScreen();
+				}
+				if (terminal != null) {
+					terminal.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
-                        done = true;  }  // ...}
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // Shut down the terminal safely.
-            try {
-                if (screen != null) {
-                    screen.stopScreen();
-                }
-                if (terminal != null) {
-                    terminal.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
+	}
 }
