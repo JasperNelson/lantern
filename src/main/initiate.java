@@ -15,7 +15,10 @@ public class initiate {
 	int count;
 	int columns;
 	int[][] temp = new int[100][100];
-	initiate() {}
+	
+	public initiate() {
+		System.out.printf("Inside initiate() constructor!\n");
+	}
 
 //snake-generates a map
 	public int[][] StartupRoomArray() {

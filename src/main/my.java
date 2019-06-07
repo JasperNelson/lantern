@@ -97,7 +97,7 @@ public class my {
         // Setup terminal and screen layers
         Terminal terminal = new DefaultTerminalFactory().createTerminal();
         Screen screen = new TerminalScreen(terminal);
-     
+
         screen.startScreen();
         screen.refresh();
 
@@ -114,21 +114,22 @@ public class my {
             screen.refresh();
 
             // Quit if the user uses the escape key
-           
+
             screen.refresh();
             KeyStroke keyStroke = terminal.readInput();
             KeyType keyType = keyStroke.getKeyType();
 
+            HUB game=new HUB(terminal, screen, name);
             boolean done = false;
-            
-            while (!done) {  
-            	HUB game=new HUB(terminal, screen);
-            	System.out.println();
-            	keyStroke = terminal.readInput();  
-              
-				if (keyStroke.getKeyType() == keyType.Escape) { 
-					
-            		done = true;  }  // ...}
+
+            while (!done) {
+                HUB game=new HUB(terminal, screen);
+                System.out.println();
+                keyStroke = terminal.readInput();
+
+                                if (keyStroke.getKeyType() == keyType.Escape) {
+
+                        done = true;  }  // ...}
             }
         } catch (Exception e) {
             e.printStackTrace();

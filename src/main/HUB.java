@@ -14,11 +14,15 @@ import com.googlecode.lanterna.input.KeyType;
 public class HUB extends my{
 		  private Terminal terminal;
 		  private Screen screen;
+		  private Character player;
+		  private initiate levelGenerator;
 
-		  public HUB(Terminal terminal, Screen screen) {
+		  public HUB(Terminal terminal, Screen screen, String playerName) {
 		    this.terminal = terminal;
 		    this.screen = screen;
-}
+		    this.player = new Character(playerName, 100);
+		    this.levelGenerator = new initiate();
+		  }
 		  void menue() throws IOException {
 			  TextGraphics textGraphics = terminal.newTextGraphics();
 
