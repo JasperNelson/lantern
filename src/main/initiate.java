@@ -41,14 +41,14 @@ public class initiate {
 		int direction;
 
 		int concurrentRooms;
-		if (a = true) {
+	
 			for (int rows = 0; rows < 100; rows++) {
 				for (int columns = 0; columns < 100; columns++) {
 					temp[rows][columns] = 0 + 0;
 				}
-				a = false;
+		
 			}
-		}
+		
 		now: for (ra = 0; ra <= 50; ra += concurrentRooms) {
 			concurrentRooms = (int) (Math.random() * 2 + 1);
 			quota = 4 - concurrentRooms;
