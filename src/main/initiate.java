@@ -42,12 +42,8 @@ public class initiate {
 
 		int concurrentRooms;
 	
-			for (int rows = 0; rows < 100; rows++) {
-				for (int columns = 0; columns < 100; columns++) {
-					temp[rows][columns] = 0 + 0;
-				}
+			
 		
-			}
 		
 		now: for (ra = 0; ra <= 50; ra += concurrentRooms) {
 			concurrentRooms = (int) (Math.random() * 2 + 1);
