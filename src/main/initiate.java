@@ -50,7 +50,8 @@ public class initiate {
 					temp[50][50] = 1;
 					start = false;
 				}
-				//each int that direction returns will cause a room to be created as long as there is not already a room there
+				//each int that direction returns will cause a room to be created as 
+				//long as there is not already a room there
 				if (direction == 1 && temp[vert + 1][horiz] == 0) {
 					vert -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
