@@ -55,19 +55,19 @@ public class initiate {
 				if (direction == 1 && temp[vert + 1][horiz] == 0) {
 					vert -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
-					quota += 1;
+					quota -= 1;
 					continueRoomArray(horiz, vert, concurrentRooms);
 
 				} else if (direction == 2 && temp[vert][horiz + 1] == 0) {
 					vert -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
-					quota += 1;
+					quota -= 1;
 					continueRoomArray(horiz, vert, concurrentRooms);
 				
 				} else if (direction == 3 && temp[vert][horiz - 1] == 0) {
 					vert -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
-					quota += 1;
+					quota -= 1;
 					continueRoomArray(horiz, vert, concurrentRooms);
 				}
 
@@ -93,19 +93,19 @@ public class initiate {
 				}
 				if (direction == 1 && temp[vert + 1][horiz] == 0) {
 					vert -= 1;
-					quota += 1;
+					quota -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
 					continueRoomArray(horiz, vert, concurrentRooms);
 					count++;
 				} else if (direction == 2 && temp[vert][horiz + 1] == 0) {
 					vert -= 1;
-					quota += 1;
+					quota -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
 					continueRoomArray(horiz, vert, concurrentRooms);
 					count++;
 				} else if (direction == 3 && temp[vert][horiz - 1] == 0) {
 					horiz -= 1;
-					quota += 1;
+					quota -= 1;
 					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
 					continueRoomArray(horiz, vert, concurrentRooms);
 					count++;
