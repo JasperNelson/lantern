@@ -40,12 +40,12 @@ public class initiate {
 			concurrentRooms = (int) (Math.random() * 2 + 1);
 			AdjacentRooms =  concurrentRooms;
 			while (AdjacentRooms != 0) {
-				if (count <= 50) {
+				if (count >= 100) {
 					
 					break now;
 				}
 				//determines the direction that the rooms will grow (like the branches of a tree)
-				direction = (int) (Math.random() * 3+1);
+				direction = (int) (Math.random() * 4+1);
 				
 				if (start == true) {
 					temp[50][50] = 1;
@@ -53,23 +53,52 @@ public class initiate {
 				}
 				//each int that direction returns will cause a room to be created as 
 				//long as there is not already a room there
-				if (direction == 1 && temp[vert + 1][horiz] == 0) {
-					vert -= 1;
-					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
+				if(vert <= 0 || vert >= 99)
+				{
+					break now;
+				}
+				if(horiz <= 0 || vert >= 99)
+				{
+					break now;
+				}
+				if (direction == 1 && temp[vert][horiz+1] == 0) {
+					horiz += 1;
 					AdjacentRooms -= 1;
+					temp[vert][horiz] = (int) (Math.random() * 8 + 2);
 					continueRoomArray(horiz, vert, concurrentRooms);
-
-				} else if (direction == 2 && temp[vert][horiz + 1] == 0) {
+					count++;
+				}  else if (direction == 2 && temp[vert - 1][horiz] == 0) {
 					vert -= 1;
-					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
 					AdjacentRooms -= 1;
+					temp[vert][horiz] = (int) (Math.random() * 8 + 2);
 					continueRoomArray(horiz, vert, concurrentRooms);
-				
-				} else if (direction == 3 && temp[vert][horiz - 1] == 0) {
-					vert -= 1;
-					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
+					count++;
+				}  else if (direction == 3 && temp[vert][horiz - 1] == 0) {
+					horiz -= 1;
 					AdjacentRooms -= 1;
+					temp[vert][horiz] = (int) (Math.random() * 8 + 2);
 					continueRoomArray(horiz, vert, concurrentRooms);
+					count++;
+				}
+				else if(direction == 4 && temp[vert + 1][horiz] == 0)
+				{
+					vert += 1;
+					AdjacentRooms -= 1;
+					temp[vert][horiz] = (int) (Math.random() * 8 + 2);
+					continueRoomArray(horiz, vert, concurrentRooms);
+					count++;
+				}
+				else
+				{
+					for(int i =0; i < 100; i++)
+						for(int j = 0; j < 100; j++)
+						{
+							if(temp[i][j] == 0)
+							{
+								vert = i;
+								horiz = j;
+							}
+						}
 				}
 
 			}
@@ -85,34 +114,63 @@ public class initiate {
 		int AdjacentRooms = 0;
 
 		
-		now: while (count <= 50) {
+		now: while (count <= 100) {
 			concurrentRooms = (int) (Math.random() * 2);
-			AdjacentRooms = 4 - concurrentRooms;
+			AdjacentRooms = 5 - concurrentRooms;
 			while (AdjacentRooms != 0) {
 				direction = (int) (Math.random() * 3);
-				if (count <= 50) {
+				if (count >= 50) {
 					break now;
 				}
-				if (direction == 1 && temp[vert + 1][horiz] == 0) {
-					vert -= 1;
+				direction = (int) (Math.random() * 4 + 1);
+				if(vert <= 0 || vert >= 99)
+				{
+					break now;
+				}
+				if(horiz <= 0 || vert >= 99)
+				{
+					break now;
+				}
+				if (direction == 1 && temp[vert][horiz+1] == 0) {
+					horiz += 1;
 					AdjacentRooms -= 1;
-					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
+					temp[vert][horiz] = (int) (Math.random() * 8 + 2);
 					continueRoomArray(horiz, vert, concurrentRooms);
 					count++;
-				} else if (direction == 2 && temp[vert][horiz + 1] == 0) {
+				}  else if (direction == 2 && temp[vert - 1][horiz] == 0) {
 					vert -= 1;
 					AdjacentRooms -= 1;
-					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
+					temp[vert][horiz] = (int) (Math.random() * 8 + 2);
 					continueRoomArray(horiz, vert, concurrentRooms);
 					count++;
-				} else if (direction == 3 && temp[vert][horiz - 1] == 0) {
+				}  else if (direction == 3 && temp[vert][horiz - 1] == 0) {
 					horiz -= 1;
 					AdjacentRooms -= 1;
-					temp[vert][horiz] = (int) (Math.random() * 8 + 1);
+					temp[vert][horiz] = (int) (Math.random() * 8 + 2);
 					continueRoomArray(horiz, vert, concurrentRooms);
 					count++;
 				}
-
+				else if(direction == 4 && temp[vert + 1][horiz] == 0)
+				{
+					vert += 1;
+					AdjacentRooms -= 1;
+					temp[vert][horiz] = (int) (Math.random() * 8 + 2);
+					continueRoomArray(horiz, vert, concurrentRooms);
+					count++;
+				}
+				else
+				{
+					for(int i =0; i < 100; i++)
+						for(int j = 0; j < 100; j++)
+						{
+							if(temp[i][j] == 0)
+							{
+								vert = i;
+								horiz = j;
+							}
+						}
+				}
+				
 			}
 		}
 	}
